@@ -1,0 +1,39 @@
+{
+  "name": "vcpu",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "trifledmatter",
+  "license": "MIT",
+  "keywords": [
+    "cpu",
+    "virtual",
+    "emulator",
+    "processor"
+  ],
+  "scripts": {
+    "build": "tsc && cd src/internal-wasm && wasm-pack build --target bundler && cd ../../",
+    "build:node": "tsc && cd src/internal-wasm && wasm-pack build --target nodejs && cd ../../",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist && rm -rf ./src/internal-wasm/pkg && rm -rf ./src/internal-wasm/target",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trifledmatter/vcpu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trifledmatter/vcpu/issues"
+  },
+  "homepage": "https://github.com/trifledmatter/vcpu#readme",
+  "dependencies": {
+    "internal-wasm": "file:src/internal-wasm/pkg"
+  }
+}
